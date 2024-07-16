@@ -1,0 +1,60 @@
+﻿@model DesafioBiblioteca.Models.Book
+
+@{
+    ViewData["Title"] = "Detalhar Livro";
+}
+
+<h1>Detalhar</h1>
+
+<div>
+    <h4>Livro: </h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SubTitulo):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SubTitulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idioma):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idioma)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataLancamento):
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.DataLancamento.ToShortDateString()
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Editora):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Editora)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Genero):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        <dt class="col-sm-2">
+            Autor:
+        </dt>
+        <dd class="col-sm-10">
+            @ViewData["Autor"]
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary text-center"  asp-action="Edit" asp-route-id="@Model?.Id">Alterar</a>
+    <a class="btn btn-secondary text-center" asp-action="Index">Voltar</a>
+</div>

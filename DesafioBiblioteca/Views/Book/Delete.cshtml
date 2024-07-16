@@ -1,0 +1,91 @@
+﻿@model DesafioBiblioteca.Models.Book
+
+@{
+    Layout = null;
+    ViewBag.Title = "Excluir";
+}
+@* @if (ViewBag.RetornoDel.Message != string.Empty)
+{
+    if (ViewBag.RetornoDel.status)
+    {
+        <div class="alert alert-success col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+            <center>@ViewBag.RetornoDel.Message</center>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+            <center>@ViewBag.RetornoDel.Message</center>
+        </div>
+    }
+} *@
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" style="position:relative; right: 20%"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" style="position:relative; right: 15%">Detalhes do produto</h4>
+        </div>
+        <div class="modal-body">
+            <p><h4>Tem certeza que deseja excluir o seguinte registro?</h4></p>
+            <p>@Html.DisplayNameFor(model => model.Titulo) : @Html.DisplayFor(model => model.Titulo)</p>
+            <p>Sub Titulo : @Html.DisplayFor(model => model.SubTitulo)</p>
+            <p>@Html.DisplayNameFor(model => model.Editora) : @Html.DisplayFor(model => model.Editora)</p>
+            <p>Data Lançamento : @Model.DataLancamento.ToShortDateString()</p>
+            <p>@Html.DisplayNameFor(model => model.Genero) : @Html.DisplayFor(model => model.Genero)</p>
+            <p>Autor : @ViewData["Autor"]</p>
+        </div>
+        <div class="modal-footer">
+                <input type="hidden" name="Id" id="Id" asp-for="Id" />
+            <form asp-action="Delete">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+
+            </form>
+            @* <button type="button" class="btn btn-danger" data-dismiss="modal" id="submitButton">Excluir</button> *@
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+@* @if (ViewBag.RetornoDel.Message != string.Empty)
+{
+    if (ViewBag.RetornoDel.status)
+    {
+        <script>
+            setTimeout(function () {
+                window.location.href = '@Url.Action("Index", "Book")';
+            }, 3000);
+        </script>
+    }
+} *@
+
+@* <script>
+    $(document).ready(function () {
+        $('#submitButton').click(function () {
+            var hiddenId = $('#formId input[name="Id"]').val();
+            $.ajax({
+                url: '@Url.Action("Delete", "Book")',
+                type: 'POST',
+                data: { id: hiddenId },
+                success: function (response) {
+                    if (response.status) {
+                        alert(response.Message);
+                        window.location.href = '@Url.Action("Index", "Book")';
+                    } else {
+                        alert(response.Message);
+                    }
+                },
+                error: function () {
+                    alert('Ocorreu um erro.');
+                }
+            });
+        });
+    });
+</script> *@
+
+
+
+@* <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form> *@

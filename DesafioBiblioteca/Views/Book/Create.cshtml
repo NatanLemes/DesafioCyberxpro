@@ -1,0 +1,101 @@
+﻿@using DesafioBiblioteca.Enums
+@model DesafioBiblioteca.Dtos.BookDto
+
+@{
+	ViewData["Title"] = "Adicionar Livro";
+}
+
+<h1>Adicionar</h1>
+
+<h4>Novo Livro Book:</h4>
+<hr />
+@if (ViewBag.Retorno.Message != string.Empty)
+{
+	if (ViewBag.Retorno.status)
+	{
+		<div class="row">
+			<div class="alert alert-success col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+				<center>@ViewBag.Retorno.Message</center>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="row">
+			<div class="alert alert-warning col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+				<center>@ViewBag.Retorno.Message</center>
+			</div>
+		</div>
+	}
+}
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Titulo" class="control-label"></label>
+				<input asp-for="Titulo" class="form-control" />
+				<span asp-validation-for="Titulo" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="SubTitulo" class="control-label"></label>
+				<input asp-for="SubTitulo" class="form-control" />
+				<span asp-validation-for="SubTitulo" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="AuthorId" class="control-label">Autor</label>
+				<select asp-for="AuthorId" class="form-control" asp-items="ViewBag.Autores">
+					<option value="">Selecione uma opção</option>
+				</select>
+				<span asp-validation-for="AuthorId" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Idioma" class="control-label"></label>
+				<input asp-for="Idioma" class="form-control" />
+				<span asp-validation-for="Idioma" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="DataLancamento" class="control-label">Data de Lançamento</label>
+				<input type="date" asp-for="DataLancamento" class="form-control" />
+				<span asp-validation-for="DataLancamento" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Editora" class="control-label"></label>
+				<input asp-for="Editora" class="form-control" />
+				<span asp-validation-for="Editora" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Genero" class="control-label"></label>
+				<select asp-for="Genero" class="form-control" asp-items="Html.GetEnumSelectList<GeneroEnum>()">
+					<option value="">Selecione uma opção</option>
+				</select>
+				<span asp-validation-for="Genero" class="text-danger"></span>
+			</div><br />
+			<div class="form-group">
+				<input type="submit" value="Cadastrar" class="btn btn-primary" />
+				<a class="btn btn-secondary text-center" asp-action="Index">Voltar</a>
+
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@if (ViewBag.Retorno.Message != string.Empty)
+{
+	if (ViewBag.Retorno.status)
+	{
+		<script>
+			setTimeout(function () {
+				window.location.href = '@Url.Action("Index", "Book")';
+			}, 2000);
+		</script>
+	}
+}
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

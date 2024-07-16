@@ -1,0 +1,36 @@
+﻿@using DesafioBiblioteca.Dtos
+@model LoginDto
+@{
+	Layout = "_LayoutDeslogado";
+}
+
+@if (TempData["MensagemErro"] != null && TempData["MensagemErro"].ToString() != string.Empty)
+{
+	<div class="alert alert-warning col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+		<center>@TempData["MensagemErro"]</center>
+	</div>
+}
+
+@if (TempData["MensagemSucesso"] != null && TempData["MensagemSucesso"].ToString() != string.Empty)
+{
+	<div class="alert alert-success col-md-4 container d-flex align-items-center justify-content-center" role="alert">
+		<center>@TempData["MensagemSucesso"]</center>
+	</div>
+}
+
+<div class="col-md-4 form-center">
+	<form method="post" asp-action="Login" asp-controller="User">
+		<div class="mb-3">
+			<label>Usuário:</label>
+			<input type="text" class="form-control" asp-for="Usuario" />
+			<span asp-validation-for="Usuario" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label>Senha:</label>
+			<input type="password" class="form-control" asp-for="Senha" />
+			<span asp-validation-for="Senha" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary text-center w-100 mb-3" style="color:black; font-weight: bold">Login</button>
+		<a class="btn btn-secondary text-center w-100" style="color:black; font-weight: bold" asp-controller="User" asp-action="Cadastrar">Cadastre-se</a>
+	</form>
+</div>

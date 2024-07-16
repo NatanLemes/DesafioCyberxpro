@@ -1,0 +1,33 @@
+﻿@model Author
+@{
+    Layout = null;
+    ViewBag.Title = "Excluir";
+}
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" style="position:relative; right: 20%"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" style="position:relative; right: 15%">Detalhes do produto</h4>
+        </div>
+        <div class="modal-body">
+            <p><h4>Tem certeza que deseja excluir o seguinte autor?</h4></p>
+            <p>@Html.DisplayNameFor(model => model.Nome) : @Html.DisplayFor(model => model.Nome)</p>
+            <p>CPF : @Html.DisplayFor(model => model.CPF)</p>
+            <p>Data Lançamento : @Model.DataNascimento.ToShortDateString()</p>
+            @if (Convert.ToInt32(TempData["QtdLivros"])>0 )
+            {
+                <p>Esse autor possui <b>@TempData["QtdLivros"] </b> livro(os) registrados na base</p>
+            }
+        </div>
+        <div class="modal-footer">
+            <input type="hidden" name="Id" id="Id" asp-for="Id" />
+            <form asp-controller="Author" asp-action="Delete">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+
+            </form>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div>
